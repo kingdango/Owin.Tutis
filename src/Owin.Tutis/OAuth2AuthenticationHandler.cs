@@ -1,10 +1,8 @@
 ﻿using Microsoft.Owin;
-using Microsoft.Owin.Helpers;
 using Microsoft.Owin.Infrastructure;
 using Microsoft.Owin.Logging;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Infrastructure;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -31,92 +29,7 @@ namespace Kingdango.Owin.Tutis
 		}
 
 		protected abstract override Task<AuthenticationTicket> AuthenticateCoreAsync();
-
-		//protected async Task<OAuth2AuthenticationResponse> GetOAuth2Result()
-		//{
-		//	AuthenticationProperties properties = null;
-
-		//	string code = null;
-		//	string state = null;
-
-		//	IReadableStringCollection query = Request.Query;
-
-		//	IList<string> values = query.GetValues("error");
-		//	if (values != null && values.Count >= 1)
-		//	{
-		//		Logger.WriteVerbose("Remote server returned an error: " + Request.QueryString);
-		//	}
-
-		//	values = query.GetValues("code");
-		//	if (values != null && values.Count == 1)
-		//	{
-		//		code = values[0];
-		//	}
-		//	values = query.GetValues("state");
-		//	if (values != null && values.Count == 1)
-		//	{
-		//		state = values[0];
-		//	}
-
-		//	properties = Options.StateDataFormat.Unprotect(state);
-		//	if (properties == null)
-		//	{
-		//		return null;
-		//	}
-
-		//	// OAuth2 10.12 CSRF
-		//	if (!ValidateCorrelationId(properties, Logger))
-		//	{
-		//		return new OAuth2AuthenticationResponse
-		//		{
-		//			Properties = properties
-		//		};
-		//	}
-
-		//	if (code == null)
-		//	{
-		//		// Null if the remote server returns an error.
-		//		return new OAuth2AuthenticationResponse
-		//		{
-		//			Properties = properties
-		//		};
-		//	}
-
-		//	string requestPrefix = Request.Scheme + "://" + Request.Host;
-		//	string redirectUri = requestPrefix + Request.PathBase + Options.CallbackPath;
-
-		//	string tokenRequest = "grant_type=authorization_code" +
-		//						  "&code=" + Uri.EscapeDataString(code) +
-		//						  "&redirect_uri=" + Uri.EscapeDataString(redirectUri) +
-		//						  "&client_id=" + Uri.EscapeDataString(Options.ClientId) +
-		//						  "&client_secret=" + Uri.EscapeDataString(Options.ClientSecret);
-
-		//	HttpResponseMessage tokenResponse = await HttpClient.GetAsync(Options.ApiSettings.TokenEndpoint + "?" + tokenRequest, Request.CallCancelled);
-		//	tokenResponse.EnsureSuccessStatusCode();
-		//	string text = await tokenResponse.Content.ReadAsStringAsync();
-		//	IFormCollection form = WebHelpers.ParseForm(text);
-
-		//	string accessToken = form["access_token"];
-		//	string expires = form["expires"];
-		//	string refreshToken = form["refresh_token"];
-
-		//	HttpResponseMessage graphResponse = await HttpClient.GetAsync(
-		//		Options.ApiSettings.GraphApiEndpoint + "?access_token=" + Uri.EscapeDataString(accessToken), Request.CallCancelled);
-		//	graphResponse.EnsureSuccessStatusCode();
-		//	text = await graphResponse.Content.ReadAsStringAsync();
-		//	JObject user = JObject.Parse(text);
-
-		//	return new OAuth2AuthenticationResponse
-		//	{
-		//		AccessToken = accessToken,
-		//		Context = Context,
-		//		Expires = expires,
-		//		User = user,
-		//		Properties = properties,
-		//		RefreshToken = refreshToken
-		//	};
-		//}
-
+		
 		protected override Task ApplyResponseChallengeAsync()
 		{
 			if (Response.StatusCode != 401)
@@ -182,7 +95,7 @@ namespace Kingdango.Owin.Tutis
 			{
 				// TODO: error responses
 
-				AuthenticationTicket ticket = await AuthenticateAsync();
+				var ticket = await AuthenticateAsync();
 				if (ticket == null)
 				{
 					Logger.WriteWarning("Invalid return state, unable to redirect.");
@@ -199,7 +112,7 @@ namespace Kingdango.Owin.Tutis
 				if (context.SignInAsAuthenticationType != null &&
 					context.Identity != null)
 				{
-					ClaimsIdentity grantIdentity = context.Identity;
+					var grantIdentity = context.Identity;
 					if (!string.Equals(grantIdentity.AuthenticationType, context.SignInAsAuthenticationType, StringComparison.Ordinal))
 					{
 						grantIdentity = new ClaimsIdentity(grantIdentity.Claims, context.SignInAsAuthenticationType, grantIdentity.NameClaimType, grantIdentity.RoleClaimType);
@@ -209,7 +122,7 @@ namespace Kingdango.Owin.Tutis
 
 				if (!context.IsRequestCompleted && context.RedirectUri != null)
 				{
-					string redirectUri = context.RedirectUri;
+					var redirectUri = context.RedirectUri;
 					if (context.Identity == null)
 					{
 						// add a redirect hint that sign-in failed in some way

@@ -1,5 +1,4 @@
 ﻿using Microsoft.Owin;
-using Microsoft.Owin.Security.Infrastructure;
 using Owin;
 
 namespace Kingdango.Owin.Tutis.Microsoft

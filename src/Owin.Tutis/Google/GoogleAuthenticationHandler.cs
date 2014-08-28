@@ -1,13 +1,12 @@
-﻿using System;
+﻿using Microsoft.Owin.Logging;
+using Microsoft.Owin.Security;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.Owin;
-using Microsoft.Owin.Logging;
-using Microsoft.Owin.Security;
-using Newtonsoft.Json.Linq;
 
 namespace Kingdango.Owin.Tutis.Google
 {

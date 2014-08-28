@@ -76,7 +76,6 @@
     <Compile Include="OAuth2AuthenticationHandler.cs" />
     <Compile Include="OAuth2AuthenticationMiddleware.cs" />
     <Compile Include="OAuth2AuthenticationProvider.cs" />
-    <Compile Include="OAuth2AuthenticationResponse.cs" />
     <Compile Include="OAuth2ReturnEndpointContext.cs" />
     <Compile Include="OAuth2ServerApiSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

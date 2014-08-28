@@ -1,3 +1,5 @@
+using Microsoft.Owin;
+
 namespace Kingdango.Owin.Tutis.Microsoft
 {
 	public class MicrosoftAuthenticationOptions : OAuth2AuthenticationOptions
@@ -19,5 +21,10 @@ namespace Kingdango.Owin.Tutis.Microsoft
 		}
 
 		public override OAuth2ServerApiSettings ApiSettings { get; set; }
+
+		public override PathString CallbackPath
+		{
+			get { return new PathString("/signin-microsoft"); }
+		}
 	}
 }

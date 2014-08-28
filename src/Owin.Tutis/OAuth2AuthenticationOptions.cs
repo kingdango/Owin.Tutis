@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using Microsoft.Owin;
+﻿using Microsoft.Owin;
 using Microsoft.Owin.Security;
+using System;
+using System.Net.Http;
 
 namespace Kingdango.Owin.Tutis
 {

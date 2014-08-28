@@ -51,7 +51,7 @@ namespace Kingdango.Owin.Tutis
 
 		private HttpMessageHandler ResolveHttpMessageHandler(TOptions options)
 		{
-			HttpMessageHandler handler = options.BackchannelHttpHandler ?? new WebRequestHandler();
+			var handler = options.BackchannelHttpHandler ?? new WebRequestHandler();
 
 			// If they provided a validator, apply it or fail.
 			if (options.BackchannelCertificateValidator != null)

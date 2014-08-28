@@ -1,15 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Microsoft.Owin;
 using Microsoft.Owin.Helpers;
-using Microsoft.Owin.Infrastructure;
 using Microsoft.Owin.Logging;
 using Microsoft.Owin.Security;
-using Microsoft.Owin.Security.Infrastructure;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace Kingdango.Owin.Tutis.Facebook
 {
