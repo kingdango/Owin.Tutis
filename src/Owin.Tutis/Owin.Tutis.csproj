@@ -66,6 +66,11 @@
     <Compile Include="Google\GoogleAuthenticationMiddleware.cs" />
     <Compile Include="Google\GoogleAuthenticationOptions.cs" />
     <Compile Include="Google\GoogleExtensions.cs" />
+    <Compile Include="LinkedIn\LinkedInExtensions.cs" />
+    <Compile Include="LinkedIn\LinkedInAuthenticatedContext.cs" />
+    <Compile Include="LinkedIn\LinkedInAuthenticationHandler.cs" />
+    <Compile Include="LinkedIn\LinkedInAuthenticationMiddleware.cs" />
+    <Compile Include="LinkedIn\LinkedInAuthenticationOptions.cs" />
     <Compile Include="Microsoft\MicrosoftAccountAuthenticatedContext.cs" />
     <Compile Include="Microsoft\MicrosoftAuthenticationHandler.cs" />
     <Compile Include="Microsoft\MicrosoftAuthenticationMiddleware.cs" />
